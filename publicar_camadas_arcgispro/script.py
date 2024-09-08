@@ -13,16 +13,16 @@ def share_web_layer(feature_dataset, layer_name, share_file):
     import arcpy
     import time
     
-    #PROJETO
+    # Projeto 
     begin = time.time()
     project = arcpy.mp.ArcGISProject('CURRENT')
     m = project.listMaps("Map")[0] 
 
-    #ADICIONA AS CAMADAS DO FEATURE DATASET NO MAPA
+    # Adiciona as camadas do feature dataset no mapa
     m.addDataFromPath(feature_dataset)
     project.save()
 
-    #PUBLICA O FEATURE DATASET
+    # Publica o feature dataset
     
     feature_dataset = m.getWebLayerSharingDraft('HOSTING_SERVER','FEATURE', layer_name)
     feature_dataset.exportToSDDraft(f'{share_file}.sddraft')
